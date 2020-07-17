@@ -188,11 +188,12 @@ int main(){
         printf("can't find .ydk in /deck\n");
         return -1;
     }
-    vector<vector<string>> cards_names_Japs;
     vector<string> check_keys = {"#main", "#extra", "#side"};
     for(auto ydk_name: ydk_names){
-        cout<<ydk_name<<endl;
+        cout<<"working on " + ydk_name<<endl;
         vector<vector<string>> cards_indexes_all=read_ydk(deck_dir_path, ydk_name);
+
+        vector<vector<string>> cards_names_Japs;
         string sentences="";
         for(j=0;j<3;j++){
             cards_names_Japs.push_back(obtain_names_Jap(ADS_path, cards_indexes_all[j]));
@@ -211,6 +212,8 @@ int main(){
             continue;
         }
         ofs<<sentences<<endl;
+        ofs.flush();
+        ofs.close();
     }
     return 0;
 }
